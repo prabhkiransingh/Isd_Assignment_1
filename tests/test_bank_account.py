@@ -7,54 +7,12 @@ Usage: To execute all tests in the terminal execute
 the following command:
     python -m unittest tests/test_bank_account.py
 """
-class BankAccount:
-    def __init__(self, account_number, client_number, balance):
-        if not isinstance(account_number, int):
-            raise ValueError("Account number must be an integer.")
-        if not isinstance(client_number, int):
-            raise ValueError("Client number must be an integer.")
-        try:
-            self.balance = float(balance)
-        except ValueError:
-            self.balance = 0.0
-
-        self.account_number = account_number
-        self.client_number = client_number
-
-    def deposit(self, amount):
-        if not isinstance(amount, (int, float)):
-            raise ValueError(f"Deposit amount: {amount} must be numeric.")
-        if amount <= 0:
-            raise ValueError(f"Deposit amount: ${amount:.2f} must be positive.")
-        
-        self.balance += amount
-
-    def withdraw(self, amount):
-        if not isinstance(amount, (int, float)):
-            raise ValueError(f"Withdraw amount: {amount} must be numeric.")
-        if amount <= 0:
-            raise ValueError(f"Withdrawal amount: ${amount:.2f} must be positive.")
-        if amount > self.balance:
-            raise ValueError(f"Withdrawal amount: ${amount:,.2f} must not exceed the account balance: ${self.balance:,.2f}")
-        
-        self.balance -= amount
-    
-    def update_balance(self, new_balance):
-        if not isinstance(new_balance, (int, float)):
-            raise ValueError(f"New balance: {new_balance} must be numeric.")
-        
-        self.balance = float(new_balance)
-
-    def __str__(self):
-        return f"Account Number: {self.account_number} Balance: ${self.balance:,.2f}\n"
-
-
 import unittest
+from bank_account.bank_account import BankAccount
 
 class TestBankAccount(unittest.TestCase):
     
     def setUp(self):
-        
         self.setUp_bank = BankAccount(20019, 1010, 1000.50)
 
     def test_valid_bank_account_creation(self):
@@ -103,16 +61,15 @@ class TestBankAccount(unittest.TestCase):
 
         #Assert
         account = BankAccount(20019, 1010, 1000.50)
-        account.update_balance(2000.00)
-        self.assertEqual(round(account.balance, 2), 2000.00)
-
+        account.update_balance(1000.00)
+        self.assertEqual(round(account.balance, 2), 2000.50)
     def test_update_balance_negative(self):
         #Arrange
 
         #Assert
         account = BankAccount(20019, 1010, 1000.50)
         account.update_balance(-500.00)
-        self.assertEqual(round(account.balance, 2), -500.00)
+        self.assertEqual(round(account.balance, 2), 500.50)
 
     def test_update_balance_non_numeric(self):
         #Arrange
@@ -176,3 +133,4 @@ class TestBankAccount(unittest.TestCase):
         #Assert
         account = BankAccount(20019, 1010, 1000.50)
         self.assertEqual(str(account), "Account Number: 20019 Balance: $1,000.50\n")
+
