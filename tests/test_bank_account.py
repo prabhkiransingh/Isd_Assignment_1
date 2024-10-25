@@ -133,3 +133,4 @@ class TestBankAccount(unittest.TestCase):
         #Assert
         account = BankAccount(20019, 1010, 1000.50)
         self.assertEqual(str(account), "Account Number: 20019 Balance: $1,000.50\n")
+
