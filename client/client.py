@@ -50,10 +50,10 @@ class Client:
             self.__last_name = last_name
 
         try:
-            valid_email = validate_email(email_address).email
-            self.__email_address = valid_email
+            email_address = validate_email(email_address, check_deliverability= False)
+            self.__email_address= email_address.normalized
         except EmailNotValidError:
-            self.__email_address = "email@pixell-river.com"
+            self.__email_address= ("email@pixell-river.com")
 
     @property
     def client_number(self) -> int:

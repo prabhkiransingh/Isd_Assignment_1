@@ -14,24 +14,24 @@ from email_validator import EmailNotValidError
 class TestClient(unittest.TestCase):
 
     def setUp(self):
-        self.setup_item = Client(1, "Prabhkiran", "Singh", "PrabhkiranSingh@rrc.ca")
+        self.setup_item = Client(1, "Prabhkiran", "Singh", "PrabhkiranSingh@gmail.com")
     
     def test_init_valid_inputs_attributes_set(self):
         # Arrange and Act
-        client = Client(1, "Prabhkiran", "Singh", "PrabhkiranSingh@rrc.ca")
+        client = Client(1, "Prabhkiran", "Singh", "PrabhkiranSingh@gmail.com")
 
         # Assert 
         self.assertEqual(client.client_number, 1)
         self.assertEqual(client.first_name, "Prabhkiran")
         self.assertEqual(client.last_name, "Singh")
-        self.assertEqual(client.email_address, "PrabhkiranSingh@rrc.ca")
+        self.assertEqual(client.email_address, "PrabhkiranSingh@gmail.com")
 
     def test_init_invalid_client_number_valueerror(self):
         # Arrange None
 
         # Act and Assert 
         with self.assertRaises(ValueError):
-            Client("invalid", "Prabhkiran", "Singh", "PrabhkiranSingh@rrc.ca")
+            Client("invalid", "Prabhkiran", "Singh", "PrabhkiranSingh@gmail.com")
         
 
     def test_init_blank_first_name_valueerror(self):
@@ -39,7 +39,7 @@ class TestClient(unittest.TestCase):
 
         # Act and Assert 
         with self.assertRaises(ValueError):
-            Client(1, "   ", "Singh", "PrabhkiranSingh@rrc.ca")
+            Client(1, "   ", "Singh", "PrabhkiranSingh@gmail.com")
         
 
     def test_init_blank_last_name_vlaueerror(self):
@@ -47,14 +47,14 @@ class TestClient(unittest.TestCase):
 
         # Act and Assert 
         with self.assertRaises(ValueError):
-            Client(1, "Prabhkiran", "   ", "PrabhkiranSingh@rrc.ca")
+            Client(1, "Prabhkiran", "   ", "PrabhkiranSingh@gmail.com")
         
 
     def test_init_invalid_email_valueerror(self):
         # Arrange
 
         # Act and Assert 
-        self.assertEqual(self.setup_item.email_address, "PrabhkiranSingh@rrc.ca")
+        self.assertEqual(self.setup_item.email_address, "PrabhkiranSingh@gmail.com")
         client = Client(1, "Prabhkiran", "Singh", "invalid-email") 
 
     def test_strip_client_number(self):
@@ -79,12 +79,12 @@ class TestClient(unittest.TestCase):
         # Arrange 
 
         # Act and Assert 
-        self.assertEqual("PrabhkiranSingh@rrc.ca", self.setup_item.email_address)
+        self.assertEqual("PrabhkiranSingh@gmail.com", self.setup_item.email_address)
 
     def test_str_method(self):
         # Arrange 
-        self.setup_item = Client(1, "Prabhkiran", "Singh", "prabhkiransingh@rrc.ca")
+        self.setup_item = Client(1, "Prabhkiran", "Singh", "PrabhkiranSingh@gmail.com")
         
         # Act and Assert
-        expected = "client_number: 1\nfirst_name: Prabhkiran\nlast_name: Singh\nemail_address: prabhkiransingh@rrc.ca"
+        expected = "client_number: 1\nfirst_name: Prabhkiran\nlast_name: Singh\nemail_address: PrabhkiranSingh@gmail.com"
         self.assertEqual(expected, str(self.setup_item))
