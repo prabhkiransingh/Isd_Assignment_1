@@ -144,3 +144,7 @@ class BankAccount(ABC):
             str: A string representation of the account.
         """
         return f"Account Number: {self._account_number} Balance: ${self._balance:,.2f}\n"
+    
+    @abstractmethod
+    def get_service_charges(self) -> float:
+        return self.BASE_SERVICE_CHARGE
