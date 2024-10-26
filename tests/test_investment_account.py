@@ -26,11 +26,11 @@ class TestInvestmentAccount(unittest.TestCase):
         account = InvestmentAccount(20019, 1010, 1000.50, date(2024, 10, 5), 1.50)
         
         # Assert
-        self.assertEqual(account._account_number, 20019)
-        self.assertEqual(account._client_number, 1010)
-        self.assertEqual(account._balance, 1000.50)
+        self.assertEqual(account._BankAccount__account_number, 20019)
+        self.assertEqual(account._BankAccount__client_number, 1010)
+        self.assertEqual(account._BankAccount__balance, 1000.50)
         self.assertEqual(account._date_created, date(2024, 10, 5))
-        self.assertEqual(account._management_fee, 1.50)
+        self.assertEqual(account._InvestmentAccount__management_fee, 1.50)
 
     def test_init_invalid_management_fee_type(self):
         # Assert
@@ -45,7 +45,7 @@ class TestInvestmentAccount(unittest.TestCase):
 
     def test_get_service_charges_more_than_10_years(self):
         # Arrange
-        account = InvestmentAccount(20019, 1010, 1000.50, date(2008, 10, 5), 2.00)
+        account = InvestmentAccount(20019, 1010, 1000.50, date(2008, 10, 5), 2.55)
         
         # Assert
         self.assertEqual(0.50, round(account.get_service_charges(), 2))
@@ -53,7 +53,7 @@ class TestInvestmentAccount(unittest.TestCase):
     def test_get_service_charges_exactly_10_years(self):
         # Arrange
         ten_years_ago = date.today() - timedelta(days=10 * 365.25)
-        account = InvestmentAccount(20019, 1010, 1000.50, ten_years_ago, 3.00)
+        account = InvestmentAccount(20019, 1010, 1000.50, ten_years_ago, 2.0)
         
         # Assert
         self.assertEqual(0.50, round(account.get_service_charges(), 2))

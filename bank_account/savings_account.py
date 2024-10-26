@@ -27,9 +27,9 @@ class SavingsAccount(BankAccount):
             raise ValueError("Minimum balance must be a number.")
         
         try:
-            self._minimum_balance = float(minimum_balance)
+            self.__minimum_balance = float(minimum_balance)
         except (ValueError, TypeError):
-            self._minimum_balance = 50.0  
+            self.__minimum_balance = 50.0  
             
 
     @property
@@ -40,7 +40,7 @@ class SavingsAccount(BankAccount):
         Returns:
             float: The minimum balance.
         """
-        return self._minimum_balance
+        return self.__minimum_balance
 
     def __str__(self) -> str:
         """
@@ -49,8 +49,8 @@ class SavingsAccount(BankAccount):
         Returns:
             str: A string containing account details including the minimum balance.
         """
-        base_str = super().__str__()  
-        return f"{base_str}Minimum Balance: ${self.minimum_balance:.2f} Account Type: Savings"
+        base_string = super().__str__()  
+        return f"{base_string}Minimum Balance: ${self.minimum_balance:.2f} Account Type: Savings"
 
     def get_service_charges(self) -> float:
         """

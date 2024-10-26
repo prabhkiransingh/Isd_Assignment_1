@@ -24,20 +24,20 @@ class ChequingAccount(BankAccount):
         
         if not isinstance(overdraft_limit, (float)):
             raise ValueError("Overdraft limit must be a numeric value.")
-        self.overdraft_limit = float(overdraft_limit)
+        self.__overdraft_limit = float(overdraft_limit)
 
         if not isinstance(overdraft_rate, (float)) or overdraft_rate < 0 or overdraft_rate > 1:
             raise ValueError("Overdraft rate must be a float between 0 and 1.")
-        self.overdraft_rate = float(overdraft_rate)
+        self.__overdraft_rate = float(overdraft_rate)
 
     def __str__(self) -> str:
         """
         Returns a string representation of the chequing account.
         """
-        base_str = super().__str__()
-        overdraft_limit_str = f"${self.overdraft_limit:.2f}"
-        overdraft_rate_str = f"{self.overdraft_rate * 100:.2f}%"
-        return f"{base_str}Overdraft Limit: {overdraft_limit_str} Overdraft Rate: {overdraft_rate_str} Account Type: Chequing"
+        base_string = super().__str__()
+        overdraft_limit_str = f"${self.__overdraft_limit:.2f}"
+        overdraft_rate_str = f"{self.__overdraft_rate * 100:.2f}%"
+        return f"{base_string}Overdraft Limit: {overdraft_limit_str} Overdraft Rate: {overdraft_rate_str} Account Type: Chequing"
 
     def get_service_charges(self) -> float:
         """
@@ -46,8 +46,8 @@ class ChequingAccount(BankAccount):
         Returns:
             float: The total service charge including overdraft fees if applicable.
         """
-        if self.balance >= self.overdraft_limit:
+        if self.balance >= self.__overdraft_limit:
             return self.BASE_SERVICE_CHARGE
         else:
-            overdraft_amount = self.overdraft_limit - self.balance
-            return self.BASE_SERVICE_CHARGE + overdraft_amount * self.overdraft_rate
+            overdraft_amount = self.__overdraft_limit - self.balance
+            return self.BASE_SERVICE_CHARGE + overdraft_amount * self.__overdraft_rate

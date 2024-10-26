@@ -33,20 +33,20 @@ class BankAccount(ABC):
         """
         if not isinstance(account_number, int):
             raise ValueError("Account number must be an integer.")
-        self._account_number = account_number
+        self.__account_number = account_number
 
         if not isinstance(client_number, int):
             raise ValueError("Client number must be an integer.")
-        self._client_number = client_number
+        self.__client_number = client_number
 
         if not isinstance(date_created, date):
             raise ValueError("Date created must be a valid date.")
         self._date_created = date_created
 
         try:
-            self._balance = float(balance)
+            self.__balance = float(balance)
         except ValueError:
-            self._balance = 0.0
+            self.__balance = 0.0
 
         if isinstance(date_created, date):
             self._date_created = date_created
@@ -61,7 +61,7 @@ class BankAccount(ABC):
         Returns:
             int: The account number.
         """
-        return self._account_number
+        return self.__account_number
 
     @property
     def client_number(self):
@@ -71,7 +71,7 @@ class BankAccount(ABC):
         Returns:
             int: The client number.
         """
-        return self._client_number
+        return self.__client_number
 
     @property
     def balance(self):
@@ -81,7 +81,7 @@ class BankAccount(ABC):
         Returns:
             float: The current balance.
         """
-        return self._balance
+        return self.__balance
 
     def update_balance(self, amount):
         """
@@ -96,7 +96,7 @@ class BankAccount(ABC):
         if not isinstance(amount, (int, float)):
             raise ValueError("Amount must be a numeric value.")
         
-        self._balance += float(amount)
+        self.__balance += float(amount)
 
     def deposit(self, amount):
         """
@@ -131,7 +131,7 @@ class BankAccount(ABC):
             if amount <= 0:
                 raise ValueError(f"Withdrawal amount: ${amount:,.2f} must be positive.")
             if amount > self._balance:
-                raise ValueError(f"Withdrawal amount: ${amount:,.2f} must not exceed the account balance: ${self._balance:,.2f}")
+                raise ValueError(f"Withdrawal amount: ${amount:,.2f} must not exceed the account balance: ${self.__balance:,.2f}")
             self.update_balance(-amount)
         except ValueError:
             raise ValueError(f"Withdraw amount: {amount} must be numeric.")
@@ -143,7 +143,7 @@ class BankAccount(ABC):
         Returns:
             str: A string representation of the account.
         """
-        return f"Account Number: {self._account_number} Balance: ${self._balance:,.2f}\n"
+        return f"Account Number: {self.__account_number} Balance: ${self.__balance:,.2f}\n"
     
     @abstractmethod
     def get_service_charges(self) -> float:

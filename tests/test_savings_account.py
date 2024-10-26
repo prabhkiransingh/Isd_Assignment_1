@@ -18,10 +18,10 @@ class TestSavingsAccount(unittest.TestCase):
         account = SavingsAccount(20019, 1010, 1000.50, date.today(), 100.00)
         
         # Assert
-        self.assertEqual(account.account_number, 20019)
-        self.assertEqual(account.client_number, 1010)
-        self.assertEqual(account.balance, 1000.50)
-        self.assertEqual(account.minimum_balance, 100.00)
+        self.assertEqual(account._BankAccount__account_number, 20019)
+        self.assertEqual(account._BankAccount__client_number, 1010)
+        self.assertEqual(account._BankAccount__balance, 1000.50)
+        self.assertEqual(account._SavingsAccount__minimum_balance, 100.00)
 
     def test_init_invalid_minimum_balance(self):
         # Assert

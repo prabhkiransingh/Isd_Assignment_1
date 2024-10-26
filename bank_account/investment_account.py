@@ -39,9 +39,9 @@ class InvestmentAccount(BankAccount):
             raise ValueError("Balance must be a number.")
         
         try:
-            self._management_fee = float(management_fee)
+            self.__management_fee = float(management_fee)
         except (ValueError, TypeError):
-            self._management_fee = 2.55  
+            self.__management_fee = 2.55  
 
     def get_service_charges(self) -> float:
         """
@@ -49,13 +49,15 @@ class InvestmentAccount(BankAccount):
 
         Returns:
             float: The calculated service charge. For accounts older than 10 years,
-                   only the base service charge is applied. For newer accounts,
-                   the management fee is added to the base service charge.
+                only the base service charge is applied. For newer accounts,
+                the management fee is added to the base service charge.
         """
+        # Check if the account was created strictly before TEN_YEARS_AGO
         if self._date_created <= self.TEN_YEARS_AGO:
-            return BankAccount.BASE_SERVICE_CHARGE  
+            return BankAccount.BASE_SERVICE_CHARGE  # Waived management fee
         else:
-            return BankAccount.BASE_SERVICE_CHARGE + self._management_fee  
+            return BankAccount.BASE_SERVICE_CHARGE + self.__management_fee  # Apply management fee for newer accounts
+
 
     def __str__(self) -> str:
         """
@@ -65,11 +67,11 @@ class InvestmentAccount(BankAccount):
             str: A string containing account details including the date created
                  and management fee information.
         """
-        base_str = super().__str__()  
+        base_string = super().__str__()  
         management_fee_str = (
-            f"Management Fee: ${self._management_fee:.2f} Account Type: Investment" 
+            f"Management Fee: ${self.__management_fee:.2f} Account Type: Investment" 
             if self._date_created > self.TEN_YEARS_AGO else 
             "Management Fee: Waived Account Type: Investment"
         )
         
-        return f"{base_str}Date Created: {self._date_created}\n{management_fee_str}"
+        return f"{base_string}Date Created: {self._date_created}\n{management_fee_str}"
