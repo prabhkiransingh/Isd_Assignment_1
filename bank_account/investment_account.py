@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 from bank_account.bank_account import BankAccount
+from patterns.strategy.management_fee_strategy import ManagementFeeStrategy  
 
 class InvestmentAccount(BankAccount):
     """
@@ -38,10 +39,10 @@ class InvestmentAccount(BankAccount):
         if not isinstance(balance, (float)):
             raise ValueError("Balance must be a number.")
         
-        try:
-            self.__management_fee = float(management_fee)
-        except (ValueError, TypeError):
-            self.__management_fee = 2.55  
+        self.__management_fee = float(management_fee)
+        self.__management_fee_strategy = ManagementFeeStrategy(date_created, self.__management_fee)  
+    
+            
 
     def get_service_charges(self) -> float:
         """
@@ -52,13 +53,7 @@ class InvestmentAccount(BankAccount):
                 only the base service charge is applied. For newer accounts,
                 the management fee is added to the base service charge.
         """
-        # Check if the account was created strictly before TEN_YEARS_AGO
-        if self._date_created <= self.TEN_YEARS_AGO:
-            return BankAccount.BASE_SERVICE_CHARGE  # Waived management fee
-        else:
-            return BankAccount.BASE_SERVICE_CHARGE + self.__management_fee  # Apply management fee for newer accounts
-
-
+        return self.__management_fee_strategy.calculate_service_charges(self)
     def __str__(self) -> str:
         """
         Return a string representation of the InvestmentAccount.
