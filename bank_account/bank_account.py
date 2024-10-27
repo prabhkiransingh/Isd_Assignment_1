@@ -16,7 +16,10 @@ class BankAccount(ABC):
         deposit(amount): Deposits the given amount into the account.
         withdraw(amount): Withdraws the given amount from the account.
     """
-    BASE_SERVICE_CHARGE = 0.50
+
+    LOW_BALANCE_LEVEL = 50.00
+    LARGE_TRANSACTION_THRESHOLD = 9999.99
+    
 
     def __init__(self, account_number:int, client_number:int, balance:float, date_created: date):  
         """
@@ -98,6 +101,13 @@ class BankAccount(ABC):
         
         self.__balance += float(amount)
 
+        if self.__balance < self.LOW_BALANCE_LEVEL:
+            raise ValueError(f"Low balance warning ${self.__balance:,.2f}: on account {self.__account_number}.")
+
+        
+        if amount > self.LARGE_TRANSACTION_THRESHOLD:
+            raise ValueError(f"Large transaction ${amount:,.2f}: on account {self.__account_number}.")
+
     def deposit(self, amount):
         """
         Deposits the given amount into the account.
@@ -130,7 +140,7 @@ class BankAccount(ABC):
             amount = float(amount)
             if amount <= 0:
                 raise ValueError(f"Withdrawal amount: ${amount:,.2f} must be positive.")
-            if amount > self._balance:
+            if amount > self.__balance:
                 raise ValueError(f"Withdrawal amount: ${amount:,.2f} must not exceed the account balance: ${self.__balance:,.2f}")
             self.update_balance(-amount)
         except ValueError:
@@ -144,7 +154,13 @@ class BankAccount(ABC):
             str: A string representation of the account.
         """
         return f"Account Number: {self.__account_number} Balance: ${self.__balance:,.2f}\n"
-    
+         
     @abstractmethod
     def get_service_charges(self) -> float:
+        """
+        Abstract method: Calculates and returns the service charges.
+
+        Returns:
+            float: The service charges for the bank account.
+        """
         return self.BASE_SERVICE_CHARGE
