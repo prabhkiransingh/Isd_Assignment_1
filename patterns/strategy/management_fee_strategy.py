@@ -13,7 +13,7 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
 
     def calculate_service_charges(self, account: BankAccount) -> float:
         """
-        Calculates the service charges for the account, including management fees if applicable.
+        Calculates the service charges for the account, including management fees if applicble.
 
         Args:
             account (BankAccount): The BankAccount object for which to calculate the service charges.
