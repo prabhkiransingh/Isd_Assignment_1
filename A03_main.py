@@ -58,7 +58,7 @@ savings_account2 = SavingsAccount(
 # in steps 3 and 5 above to perform transactions (deposits and withdraws) 
 try:
     chequing_account.deposit(12000)  
-except Exception as e:
+except ValueError as e:
     print(f"ChequingAccount deposit error: {e}")
 
 try:

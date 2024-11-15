@@ -21,10 +21,10 @@ class TestClient(unittest.TestCase):
         client = Client(1, "Prabhkiran", "Singh", "PrabhkiranSingh@gmail.com")
 
         # Assert 
-        self.assertEqual(client.client_number, 1)
-        self.assertEqual(client.first_name, "Prabhkiran")
-        self.assertEqual(client.last_name, "Singh")
-        self.assertEqual(client.email_address, "PrabhkiranSingh@gmail.com")
+        self.assertEqual(client._Client__client_number, 1)
+        self.assertEqual(client._Client__first_name, "Prabhkiran")
+        self.assertEqual(client._Client__last_name, "Singh")
+        self.assertEqual(client._Client__email_address, "PrabhkiranSingh@gmail.com")
 
     def test_init_invalid_client_number_valueerror(self):
         # Arrange None

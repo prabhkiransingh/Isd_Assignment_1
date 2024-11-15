@@ -26,7 +26,6 @@ class InvestmentAccount(BankAccount):
         Raises:
             ValueError: If date_created is not a valid date object.
 
-        If management_fee is not a valid float, it defaults to 2.55.
         """
         super().__init__(account_number, client_number, balance, date_created)
 
@@ -38,8 +37,8 @@ class InvestmentAccount(BankAccount):
         
         if not isinstance(balance, (float)):
             raise ValueError("Balance must be a number.")
-        
         self.__management_fee = float(management_fee)
+        
         self.__management_fee_strategy = ManagementFeeStrategy(date_created, self.__management_fee)  
     
             
