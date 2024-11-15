@@ -2,7 +2,7 @@ from bank_account.bank_account import BankAccount
 from patterns.strategy.overdraft_strategy import OverdraftStrategy
 class ChequingAccount(BankAccount):
     
-    BASE_SERVICE_CHARGE = 0.50  
+     
 
     def __init__(self, account_number: int, client_number: int, balance: float, date_created, overdraft_limit: float, overdraft_rate: float):
         """

@@ -3,9 +3,9 @@ Description: {Classes, Encapsulation and Unit Test Planning}
 Author: {Prabhkiran Singh}
 """
 from email_validator import validate_email, EmailNotValidError
+from patterns.observer import Observer
 
-
-class Client:
+class Client(Observer):
     """
     Represents a client with their details.
 
