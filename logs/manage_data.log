@@ -1,0 +1,30 @@
+root - ERROR - Unable to create client: Missing required client details.
+
+
+root - ERROR - Unable to create bank account: could not convert string to float: 'ten'
+
+
+root - ERROR - Unable to create bank account: time data '20230915' does not match format '%Y-%m-%d'
+
+
+root - ERROR - Not a valid account type: InvestmentAccoun
+
+
+root - ERROR - Bank Account: 20100 contains invalid Client Number: 9999
+
+
+root - ERROR - Unable to create client: Missing required client details.
+
+
+root - ERROR - Unable to create bank account: could not convert string to float: 'ten'
+
+
+root - ERROR - Unable to create bank account: time data '20230915' does not match format '%Y-%m-%d'
+
+
+root - ERROR - Not a valid account type: InvestmentAccoun
+
+
+root - ERROR - Bank Account: 20100 contains invalid Client Number: 9999
+
+
