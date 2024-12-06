@@ -1,5 +1,5 @@
 account_number,client_number,balance,date_created,account_type,overdraft_limit,overdraft_rate,minimum_balance,management_fee
-20001,1001,15000,2023-01-10,ChequingAccount,-50,0.035,Null,Null
+20001,1001,28000.0,2023-01-10,ChequingAccount,-50,0.035,Null,Null
 20002,1001,301.54,2023-01-15,SavingsAccount,Null,Null,50,Null
 22222,1001,434.33,2023-05-05,SavingsAccount,Null,Null,100,Null
 20003,1002,1200.87,2023-02-01,ChequingAccount,-100,0.035,Null,Null
@@ -18,7 +18,7 @@ account_number,client_number,balance,date_created,account_type,overdraft_limit,o
 20016,1008,7522.9,2023-08-18,InvestmentAccount,Null,Null,Null,5
 20017,1009,11223.8,2023-09-10,SavingsAccount,Null,Null,50,Null
 20018,1009,31000,2023-09-15,ChequingAccount,-50,0.025,Null,Null
-20019,1010,6764.67,2023-10-01,InvestmentAccount,Null,Null,Null,3
+20019,1010,7764.67,2023-10-01,InvestmentAccount,Null,Null,Null,3
 20020,1010,4109.99,2023-10-05,SavingsAccount,Null,Null,100,Null
 20021,1006,10850.23,2023-10-10,ChequingAccount,-329,0.034,Null,Null
 20022,1008,21874.45,2023-10-10,InvestmentAccount,Null,Null,Null,1.28

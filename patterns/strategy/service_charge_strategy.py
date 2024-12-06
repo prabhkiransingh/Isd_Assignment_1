@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 class ServiceChargeStrategy(ABC):
     """
     Base class for service charge strategies.
+    
     """
 
     BASE_SERVICE_CHARGE = 0.50
